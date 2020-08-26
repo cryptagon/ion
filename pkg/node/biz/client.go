@@ -42,9 +42,10 @@ func join(peer *signal.Peer, msg proto.JoinMsg) (interface{}, *nprotoo.Error) {
 		}
 
 		oldPeer := signal.GetPeer(rid, peer.ID())
-		signal.DelPeer(rid, peer.ID())
-		oldPeer.Close()
-
+		if oldPeer != nil {
+			signal.DelPeer(rid, peer.ID())
+			oldPeer.Close()
+		}
 	}
 	log.Infof("biz.join adding new peer")
 	signal.AddPeer(rid, peer)
