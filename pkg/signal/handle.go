@@ -105,7 +105,7 @@ func in(transport *transport.WebSocketTransport, request *http.Request) {
 				oldPeer := room.GetPeer(peer.ID())
 				// only remove if its the same peer. If newer peer joined before the cleanup, leave it.
 				if oldPeer == &peer.Peer {
-					if code > 1000 || code == 100 {
+					if code > 1000 {
 						msg := proto.LeaveMsg{
 							RoomInfo: proto.RoomInfo{RID: room.ID()},
 						}
