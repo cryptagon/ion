@@ -4,8 +4,10 @@ metadata:
   name: {{ include "ion.fullname" . }}-biz
   labels:
     {{- include "ion.labels" . | nindent 4 }}
+  annotations:
+    beta.cloud.google.com/backend-config: "{\"ports\": {\"8443\":\"{{include "ion.fullname" . }}-backend\"}}"
 spec:
-  type: ClusterIP
+  type: NodePort 
   ports:
   - name: biz
     port: 8443

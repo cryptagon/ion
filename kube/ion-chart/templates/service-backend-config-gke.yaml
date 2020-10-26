@@ -1,0 +1,12 @@
+{{- if .Values.googleBackendConfig.enabled }}
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
+  name: {{ include "ion.fullname" . }}-backend
+  labels:
+    {{- include "ion.labels" . | nindent 4 }}
+spec:
+  timeoutSec: {{ .Values.googleBackendConfig.timeoutSec }} 
+  connectionDraining:
+    drainingTimeoutSec: {{ .Values.googleBackendConfig.drainingTimeoutSec }} 
+{{ end }}
