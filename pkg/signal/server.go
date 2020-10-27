@@ -96,6 +96,9 @@ func handler(connectionAuth conf.AuthConfig, msgHandler MsgHandler) func(w http.
 func NewWebSocketServer(cfg WebSocketServerConfig, msgHandler MsgHandler) error {
 	// Websocket handle func
 	http.HandleFunc(cfg.WebSocketPath, handler(cfg.AuthConnection, msgHandler))
+	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	})
 
 	if cfg.CertFile == "" || cfg.KeyFile == "" {
 		logger.Infof("non-TLS WebSocketServer listening on: %s:%d", cfg.Host, cfg.Port)

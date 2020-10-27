@@ -116,4 +116,7 @@ etcd:
     rbac:
       enabled: false
 
-
+googleBackendConfig:
+  enabled: true
+  timeoutSec: 3600 
+  drainingTimeoutSec: 3600 
